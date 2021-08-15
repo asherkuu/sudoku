@@ -1,0 +1,44 @@
+# React.memo()
+
+컴퍼넌트가 React.memo()로 래핑 될 때, React는 컴퍼넌트를 렌더링하고 결과를 메모이징(Memoizing)한다. 
+그리고 다음 렌더링이 일어날 때 props가 같다면, React는 메모이징(Memoizing)된 내용을 재사용한다.
+
+**Usage
+      export function Movie({ title, releaseDate }) {
+         return (
+            <div>
+               <div>Movie title: {title}</div>
+               <div>Release date: {releaseDate}</div>
+            </div>
+         );
+      }
+
+      export const MemoizedMovie = React.memo(Movie);
+
+   React.memo(Movie)는 새로 메모이징된 컴퍼넌트인 MemoizedMovie를 반환한다.
+   한 가지 차이점을 제외하고 원래의 Movie 컴퍼넌트와 같은 결과를 나타낼 것이다.
+   첫 번째 렌더에서는 React의 MemoizedMovie 함수를 호출한다. 
+   재 렌더시에는 React는 MemoizedMovie 함수를 호출하지 않는다. 
+
+**언제 어느 컴포넌트에 사용되어야 하는가 ?
+   React.memo()를 사용하기 가장 좋은 케이스는 함수형 컴포넌트가 같은 props로 자주 반복적으로 렌더링 되거나
+   될 것으로 예상될 때 사용하는 것이다.
+   부모컴포넌트에 의해서 자하위 컴포넌트가 같은 props로 리렌더링 되는 경우가 있는데
+   이의 반복을 방지하기위해 사용하는것이 좋다.
+
+**항상 같은 props로만 비교를 해야하는가 ?
+   props를 동등 비교 커스터마이징이 가능하다. 비교방식을 수정하고 싶다면 두번째 매개변수로 비교함수를 만들어 넘겨주면 된다.
+
+   function moviePropsAreEqual(prevMovie, nextMovie) {
+      return (
+         prevMovie.title === nextMovie.title &&
+         prevMovie.releaseDate === nextMovie.releaseDate
+      );
+   }
+
+   areEqual(prevProps, nextProps) 함수는 prevProps와 nextProps가 같다면 true를 반환할 것이다.
+
+**React.memo() 는 성능 개선의 도구다
+   대부분의 상황에서 React는 메모이징 된 컴퍼넌트의 리렌더링을 피할 수 있지만, 
+   렌더링을 막기 위해 메모이제이션에 의존하면 안된다.
+

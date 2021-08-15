@@ -1,0 +1,2 @@
+npm i -D @types/jest @types/node @type/react @type/react-dom @type/react-redux @type/styled-components react-scripts typescript
+npm i react-redux redux redux-devtools-extension redux-persist styled-compnents ts-loader

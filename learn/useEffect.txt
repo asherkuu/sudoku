@@ -1,0 +1,21 @@
+# hook과 라이플 사이클
+
+**componentDidMount
+
+   useEffect(() => {
+      // 실행 할 로직
+   }, []);
+
+**componentDidUpdate
+
+   const mounted = useRef(false);
+   useEffect(() => {
+      if(!mounted.current) mounted.current = true;
+      // 실행 할 로직
+   }, [/*변경되는값*/]);
+
+**componentDidMount, componentDidUpdate 둘다
+
+   useEffect(() => {
+      // 실행 할 로직
+   }, [/*변경되는값*/]);
