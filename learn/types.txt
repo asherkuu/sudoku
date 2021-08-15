@@ -1,0 +1,4 @@
+type 파일에 export type 를 통한 전역 type 설정 가능
+
+** redux를 위한 type이 아닌 typescript를 위한 type이다.
+   구분을 확실히 하자

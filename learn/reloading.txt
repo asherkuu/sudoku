@@ -1,0 +1,20 @@
+# redux를 통해 페이지 새로고침시 데이터 유지 시키기
+
+1. redux-persist 모듈 설치
+2. service-worker.ts 필요
+3. index.tsx 하단에 service-worker.ts의 register() 선언
+4. configuare-store에 단순 리덕스만 사용할 경우 store만 정의 패이지 새로고침시 데이터 유지를 원한다면 persistor 포함 작성
+5. index.tsx에 persistor 정의
+
+** index.tsx 예시
+
+import { Provider } from 'react-redux'
+import { PersistGate } from 'redux-persist/integration/react'
+import { register, configureStore } from './core';
+
+const { store, persistor } = configureStore();
+
+<Provider store={store}>
+   <PersistGate loading={null} persistor={persistor}>
+   </PersistGate>
+</Provider>
