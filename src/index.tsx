@@ -1,12 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux'
-import { PersistGate } from 'redux-persist/integration/react'
-import { ThemeProvider } from 'styled-components'
+import React from "react";
+import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
+import { ThemeProvider } from "styled-components";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-import { Content, Title, Card, Grid, Numbers, NewButton } from './components'
-import { register, configureStore } from './core';
-import { GlobalStyles, theme } from './styles'
+import { Content, Title, Card, Grid, Numbers, NewButton } from "./components";
+import { register, configureStore } from "./core";
+import { GlobalStyles, theme } from "./styles";
 
 const { store, persistor } = configureStore();
 
@@ -23,11 +25,11 @@ ReactDOM.render(
             <Numbers />
           </Card>
         </Content>
+        <ToastContainer />
       </PersistGate>
     </Provider>
-  </ThemeProvider>
-  , document.getElementById('root')
+  </ThemeProvider>,
+  document.getElementById("root")
 );
 
 register();
-
